@@ -1,0 +1,15 @@
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+
+defaults:
+  - house
+  - car
+  - wheat
+  - _self_
+
+app:
+  debug: true
+  upload_folder: uploads/batch_files
+  main_template: home_page_combined.html
