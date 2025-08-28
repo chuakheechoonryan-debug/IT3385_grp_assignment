@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Predict Melbourne Housing Price</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" href="C:\Dev_Assignment\Assignment\assignment_contents\static\style.css">
+</head>
+
+<body id="house_pred">
+  <div class="container">
+    <div class="text-center mt-4">
+      <a href="{{ url_for('main_home') }}" class="btn btn-secondary">Back to Home</a>
+    </div>
+    <h1>Predict Melbourne Housing Price</h1>
+    <h5 class="error">{{ error }}</h5>
+    <h4 class="prediction-result" id="past_prediction">{{ pred }}</h4>
+
+    <!-- Prediction Type Dropdown -->
+    <select name="pred-type" id="pred-sel">
+      <option value="" disabled selected>Select prediction type</option>
+      <option value="online">Online</option>
+      <option value="batch">Batch</option> <!-- Batch option for file upload -->
+    </select>
+
+    <!-- Online Prediction Form -->
+    <div class="online-prediction form-container" id="online-prediction" style="display:none;">
+      <form action="{{ url_for('predict_house_price') }}" method="post">
+        <label for="Distance">Distance to City Center (km)</label>
+        <input type="number" name="Distance" placeholder="e.g., 10" min="0" required><br>
+
+        <label for="Age">Property Age (Years)</label>
+        <input type="number" name="Age" placeholder="e.g., 10" min="0" required><br>
+
+        <label for="Landsize">Land Size (sqm)</label>
+        <input type="number" name="Landsize" placeholder="e.g., 500" min="0" required><br>
+
+        <label for="Bedroom2">Number of Bedrooms</label>
+        <input type="number" name="Bedroom2" placeholder="e.g., 2" min="0" required><br>
+
+        <label for="BuildingArea">Building Area (sqm)</label>
+        <input type="number" name="BuildingArea" placeholder="e.g., 200" min="0" required><br>
+
+        <label for="Type">Property Type</label>
+        <select name="Type" required>
+          <option value="" disabled selected>Select</option>
+          <option>House</option>
+          <option>Apartment</option>
+          <option>Townhouse</option>
+        </select><br>
+
+        <!-- Region Dropdown -->
+        <label for="Region">Region</label>
+        <select name="Region" required>
+          <option value="" disabled selected>Select Region</option>
+          <option>Southern Metropolitan</option>
+          <option>Northern Metropolitan</option>
+          <option>Western Metropolitan</option>
+          <option>Eastern Metropolitan</option>
+          <option>South-Eastern Metropolitan</option>
+          <option>Eastern Victoria</option>
+          <option>Northern Victoria</option>
+          <option>Western Victoria</option>
+        </select><br>
+
+        <button type="submit">Predict</button>
+      </form>
+    </div>
+
+    <!-- Batch Prediction Form (File Upload) -->
+    <div class="batch-prediction form-container" id="batch-prediction" style="display:none;">
+      <form action="{{ url_for('predict_hp_csv') }}" method="POST" enctype="multipart/form-data" id="file_form">
+        <label for="csv_file">Upload CSV File for Batch Prediction</label>
+        <p><input type="file" name="file" id="csv_file" required></p>
+        <button type="submit">Predict</button>
+      </form>
+    </div>
+
+  </div>
+
+  <script>
+    var batch = document.getElementById("batch-prediction");
+    var online = document.getElementById("online-prediction");
+    var selectElement = document.getElementById("pred-sel");
+
+    // Function to hide both forms initially
+    function blankScreen() {
+      batch.style.display = "none";
+      online.style.display = "none";
+    }
+
+    // Attach event listener to select element
+    selectElement.addEventListener('change', function () {
+      let selectedValue = selectElement.value;
+
+      // Show batch form if "Batch" is selected
+      if (selectedValue == 'batch') {
+        blankScreen();
+        batch.style.display = "block"; // Show batch prediction form
+      }
+      // Show online form if "Online" is selected
+      else if (selectedValue == 'online') {
+        blankScreen();
+        online.style.display = "block"; // Show online prediction form
+      }
+    });
+
+  </script>
+</body>
+</html>
