@@ -1,0 +1,10 @@
+wheat:
+  model_path: models/pycaret_wheat_seed_pipline
+  template: home_page_wheat.html
+  display_template: display_table_wheat.html
+  features: ['Area','Perimeter','Compactness','Length','Width','AsymmetryCoeff','Groove']
+  # To each Type number, assign corresponding wheat name
+  type_map:
+    1: "Kama"
+    2: "Rosa"
+    3: "Canadian"

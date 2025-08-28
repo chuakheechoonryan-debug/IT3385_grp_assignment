@@ -152,6 +152,16 @@ button:hover{background-color: #3762bc;}
   border-radius: 10px;
 }
 
+#car_pred .muted{
+	color:#9ca3af;
+	font-size:.9rem
+}
+#car_pred hr{
+	border:none;
+	border-top:1px solid #1f2937;
+	margin:24px 0
+}
+
 #house_pred {
   font-family: 'Arimo', sans-serif;
   background: #111827;

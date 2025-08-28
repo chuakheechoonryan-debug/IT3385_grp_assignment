@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <title>Used Car Price Predictor</title>
-  <!-- <link rel="stylesheet" href="C:\Dev_Assignment\Assignment\assignment_contents\static\style.css"> -->
+  <link rel="stylesheet" href="C:\Dev_Assignment\Assignment\assignment_contents\static\style.css">
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body id="car_pred">
@@ -45,6 +45,20 @@
 
       <button type="submit">Predict</button>
     </form>
+
+    <hr>
+
+    <!-- Batch prediction -->
+    <h3>Batch Prediction (CSV / Excel)</h3>
+    <form action="{{ url_for('predict_cp_csv') }}" method="POST" enctype="multipart/form-data">
+      <input type="file" name="file" accept=".csv,.xlsx,.xls">
+      <button type="submit">Batch Predict</button>
+    </form>
+    <p class="muted">
+      File must include these columns (any order):<br>
+      <code>Brand_Model, Location, Year, Kilometers_Driven, Fuel_Type, Transmission, Owner_Type, Mileage_kmpl, Engine_cc, Power_bhp, Seats, Brand</code>
+    </p>
+  </div>
   </div>
 
   <script>
