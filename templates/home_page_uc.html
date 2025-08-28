@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Used Car Price Predictor</title>
+  <link rel="stylesheet" href="C:\Dev_Assignment\Assignment\assignment_contents\static\style.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body id="car_pred">
+  <div class="card">
+    <div class="text-center mt-4">
+      <a href="{{ url_for('main_home') }}" class="btn btn-secondary">Back to Home</a>
+    </div>
+    <h2>Used Car Price (INR Lakhs)</h2>
+    {% if pred %}<div class="result">{{ pred }}</div>{% endif %}
+    {% if error %}<div class="result" style="color:#fca5a5">{{ error }}</div>{% endif %}
+
+    <form method="post" action="{{ url_for('predict_car_price') }}">
+      <label>Brand & Model</label><input name="Brand_Model" placeholder="e.g., Hyundai i20" required>
+      <label>Brand</label><input name="Brand" placeholder="e.g., Hyundai">
+      <label>Location</label><input name="Location" placeholder="e.g., Mumbai" required>
+
+      <label>Year</label><input name="Year" type="number" min="1990" max="2025" required>
+      <label>Kilometers Driven</label><input name="Kilometers_Driven" type="number" min="0" required>
+      <label>Fuel Type</label>
+      <select name="Fuel_Type" required>
+        <option value="" disabled selected>Select</option>
+        <option>Petrol</option><option>Diesel</option><option>Electric</option><option>CNG</option><option>LPG</option>
+      </select>
+      <label>Transmission</label>
+      <select name="Transmission" required>
+        <option value="" disabled selected>Select</option>
+        <option>Manual</option><option>Automatic</option>
+      </select>
+      <label>Owner Type</label>
+      <select name="Owner_Type" required>
+        <option value="" disabled selected>Select</option>
+        <option>First</option><option>Second</option><option>Third</option><option>Other</option>
+      </select>
+
+      <label>Mileage (kmpl equiv)</label><input name="Mileage_kmpl" type="number">
+      <label>Engine (cc)</label><input name="Engine_cc" type="number">
+      <label>Power (bhp)</label><input name="Power_bhp" type="number">
+      <label>Seats</label><input name="Seats" type="number">
+
+      <button type="submit">Predict</button>
+    </form>
+
+    <hr>
+
+    <!-- Batch prediction -->
+    <h3>Batch Prediction (CSV / Excel)</h3>
+    <form action="{{ url_for('predict_cp_csv') }}" method="POST" enctype="multipart/form-data">
+      <input type="file" name="file" accept=".csv,.xlsx,.xls">
+      <button type="submit">Batch Predict</button>
+    </form>
+    <p class="muted">
+      File must include these columns (any order):<br>
+      <code>Brand_Model, Location, Year, Kilometers_Driven, Fuel_Type, Transmission, Owner_Type, Mileage_kmpl, Engine_cc, Power_bhp, Seats, Brand</code>
+    </p>
+  </div>
+  </div>
+
+  <script>
+    // auto-fill Brand from first word of Brand_Model
+    const bm = document.querySelector('input[name="Brand_Model"]');
+    const b  = document.querySelector('input[name="Brand"]');
+    bm.addEventListener('input', () => {
+      const t = bm.value.trim(); b.value = t ? t.split(/\s+/)[0] : "";
+    });
+  </script>
+</body>
+</html>

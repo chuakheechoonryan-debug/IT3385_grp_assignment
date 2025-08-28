@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html class="no-overflow">
+<head>
+    <meta charset="UTF-8">
+    <title>Wheat Seed Type Prediction</title>
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet'>
+    <!-- <link rel="stylesheet" href="C:\Dev_Assignment\Assignment\assignment_contents\static\style.css"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="default">
+    <div class="login">
+        <div class="text-center mt-4">
+            <a href="{{ url_for('main_home') }}" class="btn btn-secondary">Back to Home</a>
+        </div>
+        <h2>Predict Wheat Seed Type</h2>
+        <h5 style="color: red;">{{error}}</h5>
+        <select name="pred-type" id="pred-sel">
+            <option value="" disabled selected>Select prediction type</option>
+            <option value="single">Single</option>
+            <option value="batch_csv">Batch (CSV)</option>
+            <option value="batch_json">Batch (JSON)</option>
+        </select>
+
+        <br>
+        <h4 id="past_prediction">{{pred}}</h4>
+        <div class="online-prediction" id="online-prediction">
+            <form action="{{ url_for('predict_seed_type')}}"method="post">
+                <input type="text" name="Area" placeholder="Area" required="required" /><br>
+                <input type="text" name="Perimeter" placeholder="Perimeter" required="required" /><br>
+                <input type="text" name="Compactness" placeholder="Compactness" required="required" /><br>
+                <input type="text" name="Length" placeholder="Length" required="required" /><br>
+                <input type="text" name="Width" placeholder="Width" required="required" /><br>
+                <input type="text" name="AsymmetryCoeff" placeholder="Asymmetry Coefficient" required="required" /><br>
+                <input type="text" name="Groove" placeholder="Groove" required="required" /><br>
+                <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+            </form>
+        </div>
+
+        <div class="batch-prediction" id="batch-prediction">
+            <form id="csv_form" action="{{ url_for('predict_st_csv')}}" method="POST" enctype="multipart/form-data">
+                <p>Insert CSV file below:</p>
+                <p><input type="file" name="file" id="csv_file"></p>
+                <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+            </form>
+        </div>
+
+        <div class="batch-prediction" id="batch-prediction2">
+            <form id="json_form" action="{{ url_for('predict_st_api')}}" method="POST" enctype="multipart/form-data">
+                <p>Insert JSON file below:</p>
+                <p><input type="file" name="file" id="json_file"></p>
+                <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+            </form>
+        </div>
+
+        <br>
+        <br>
+
+    </div>
+</body>
+</html>
+
+<script>
+var batch_csv = document.getElementById("batch-prediction");
+var batch_json = document.getElementById("batch-prediction2");
+var online = document.getElementById("online-prediction");
+var pastPrediction = document.getElementById("past_prediction");
+var selectElement = document.getElementById("pred-sel");
+
+function blankScreen(){
+  batch_csv.style.display = "none"
+  batch_json.style.display = "none"
+  online.style.display = "none"
+  pastPrediction.style.display = "none"
+}
+
+selectElement.addEventListener('change', function(){
+  let selectedValue = selectElement.value
+      if(selectedValue == 'batch_csv'){
+        blankScreen()
+        batch_csv.style.display = "block"
+      }
+      else if(selectedValue == 'single'){
+        blankScreen()
+        online.style.display = "block"
+      }
+      else if (selectedValue == 'batch_json'){
+        blankScreen()
+        batch_json.style.display = "block"
+      }
+    })
+
+  const csvForm = document.getElementById("csv_form");
+  const csvFileInput = document.getElementById("csv_file")
+
+  csvForm.addEventListener('submit',(e) =>{
+  if (csvFileInput.value === '' )
+  {alert("Upload at least one csv file")
+  e.preventDefault()}
+
+    var filePath = csvFileInput.value;
+    var allowedExtensions = /(\.csv)$/i;
+    if(csvFileInput.value != '' && !allowedExtensions.exec(filePath)){
+      alert("Upload csv files only")
+      e.preventDefault()
+    }
+  })
+
+  const jsonForm = document.getElementById("json_form");
+  const jsonFileInput = document.getElementById("json_file")
+
+  jsonForm.addEventListener('submit',(e) =>{
+  if (jsonFileInput.value === '' )
+  {alert("Upload at least one json file")
+  e.preventDefault()}
+
+    var filePath = jsonFileInput.value;
+    var allowedExtensions = /(\.json)$/i;
+    if(jsonFileInput.value != '' && !allowedExtensions.exec(filePath)){
+      alert("Upload json files only")
+      e.preventDefault()
+    }
+  })
+</script>

@@ -1,0 +1,7 @@
+car:
+  model_path: models/used_car_price_pipeline
+  template: home_page_uc.html
+  display_template: display_table_uc.html
+  features: ["Brand_Model","Location","Year","Kilometers_Driven","Fuel_Type",
+             "Transmission","Owner_Type","Mileage_kmpl","Engine_cc","Power_bhp","Seats","Brand"]
+  numeric_features: ["Year","Kilometers_Driven","Mileage_kmpl","Engine_cc","Power_bhp","Seats"]
