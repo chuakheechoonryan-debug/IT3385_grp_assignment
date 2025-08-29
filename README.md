@@ -11,6 +11,8 @@ To deploy the Web Application locally on Docker, do the following:
 - Download contents of repository
 - Place contents of download zip file into a folder inside a folder inside a folder (ensures docker does not copy anything unwanted, C:\Dev_Assignment\Assignment\assignment_contents e.g.)
 - Ensure Docker Desktop and Anaconda are installed on your local device
+    - Docker Desktop: https://www.docker.com/get-started/
+    - Anaconda (Distribution Installer): https://www.anaconda.com/download/success
 - Ensure proper virtual environment is setup in anaconda with python version 3.10 and Pycaret:
     -     conda create --name [virutal env name] python=3.10
     -     pip install pycaret[full]
@@ -25,10 +27,21 @@ To deploy the Web Application locally on Docker, do the following:
 - Run the container to deploy it locally and click on the port to visit the locally deployed web application
 
 ### Online (Render)
-- Ensure Git is installed on your local device, link: https://git-scm.com/downloads
-- Clone this repository when in an appropriate folder:
-    -     git clone https://github.com/chuakheechoonryan-debug/IT3385_grp_assignment.git
-- 
+- Copy the link to the github repo (HTTPS)
+- Go to: https://render.com/
+- Click 'Get Started for Free'
+- Create Account/Sign in to render
+- Click New → Web Service
+- Select Public Git Repository and paste in the the copied HTTPS link
+
+<img width="2407" height="533" alt="image" src="https://github.com/user-attachments/assets/090ed017-a78e-44b0-9d17-902e38cc3939" />
+
+- Settings should be as followed:
+
+<img width="2417" height="885" alt="image" src="https://github.com/user-attachments/assets/d4b64d3b-c668-45e6-8814-44074b4fc511" />
+
+- Choose appropriate instance type
+- Click deploy web service to deploy it
 
 ## Folder Structure
 ```
