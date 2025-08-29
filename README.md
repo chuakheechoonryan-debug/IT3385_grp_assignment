@@ -10,8 +10,16 @@ To deploy the Web Application locally on Docker, do the following:
 - Download contents of repository
 - Place contents of download zip file into a folder inside a folder inside a folder (ensures docker does not copy anything unwanted, C:\Dev_Assignment\Assignment\assignment_contents e.g.)
 - Ensure Docker Desktop and Anaconda are installed on your local device
-- Ensure proper environment is setup:
--     python=3.10 conda (create --name mlops python=3.10)
+- Ensure proper virtual environment is setup in anaconda with python version 3.10 and Pycaret:
+    -     conda create --name [virutal env name] python=3.10
+    -     pip install pycaret[full]
+- Run docker build to create container
+    -     docker build -t [container name]:latest .
+- Then run created docker container on appropriate host port:container port (5000:5000 etc.)
+    -     docker run -d -p [host port]:[container port] [container name]
+- It should then appear as seen in docker desktop:
+
+<img width="2517" height="1349" alt="image" src="https://github.com/user-attachments/assets/abc7584b-efd6-4f78-8a32-43e71ded425c" />
 
 
 ## Folder Structure
