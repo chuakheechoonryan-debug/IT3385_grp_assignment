@@ -1,5 +1,19 @@
 # IT3385_grp_assignment
 
+## Team Members
+- Chua Khee Choon Ryan (220862D)
+- Ong Sze Xuan Janelle (220932Y)
+- Tan Zhi Ning (220843P)
+
+## Deployment Guide
+To deploy the Web Application locally on Docker, do the following:
+- Download contents of repository
+- Place contents of download zip file into a folder inside a folder inside a folder (ensures docker does not copy anything unwanted, C:\Dev_Assignment\Assignment\assignment_contents e.g.)
+- Ensure Docker Desktop and Anaconda are installed on your local device
+- Ensure proper environment is setup:
+-     python=3.10 conda (create --name mlops python=3.10)
+
+
 ## Folder Structure
 ```
 IT3385_grp_assignment/
@@ -55,7 +69,6 @@ IT3385_grp_assignment/
     └───batch_files/
 ```
 
-## Team Members
-- Chua Khee Choon Ryan (220862D)
-- Ong Sze Xuan Janelle (220932Y)
-- Tan Zhi Ning (220843P)
+## URLs for GitHub Repository and Render Web Application
+Github Repository: https://github.com/chuakheechoonryan-debug/IT3385_grp_assignment.git
+Render Web Application: https://it3385-grp-assignment.onrender.com/
