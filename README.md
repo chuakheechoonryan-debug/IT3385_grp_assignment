@@ -1,6 +1,7 @@
 # IT3385_grp_assignment
 
 ## Folder Structure
+```
 IT3385_grp_assignment/
 │   .gitignore
 │   Dockerfile
@@ -52,6 +53,7 @@ IT3385_grp_assignment/
 │
 └───uploads/
     └───batch_files/
+```
 
 ## Team Members
 - Chua Khee Choon Ryan (220862D)
