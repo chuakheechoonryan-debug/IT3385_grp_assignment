@@ -6,6 +6,7 @@
 - Tan Zhi Ning (220843P)
 
 ## Deployment Guide
+### Locally
 To deploy the Web Application locally on Docker, do the following:
 - Download contents of repository
 - Place contents of download zip file into a folder inside a folder inside a folder (ensures docker does not copy anything unwanted, C:\Dev_Assignment\Assignment\assignment_contents e.g.)
@@ -21,6 +22,13 @@ To deploy the Web Application locally on Docker, do the following:
 
 <img width="2517" height="1349" alt="image" src="https://github.com/user-attachments/assets/abc7584b-efd6-4f78-8a32-43e71ded425c" />
 
+- Run the container to deploy it locally and click on the port to visit the locally deployed web application
+
+### Online (Render)
+- Ensure Git is installed on your local device, link: https://git-scm.com/downloads
+- Clone this repository when in an appropriate folder:
+    -     git clone https://github.com/chuakheechoonryan-debug/IT3385_grp_assignment.git
+- 
 
 ## Folder Structure
 ```
