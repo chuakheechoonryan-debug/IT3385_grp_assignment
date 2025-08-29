@@ -43,6 +43,21 @@ To deploy the Web Application locally on Docker, do the following:
 - Choose appropriate instance type
 - Click deploy web service to deploy it
 
+## User Guide
+Web Application consists of 3 pages:
+- Melbourne Property Selling Price Prediction
+- Used Car Selling Price Prediction
+- Wheat Seed Type Prediction
+
+Each of them consist of online and batch predictions
+- Online prediction,
+    - write/paste or select appropriate values for each input box and click predict
+    - Prediction will be displayed on the screen
+- Batch prediction:
+    - Select batch option from dropdown or scroll to bottom of page (for Used Car Selling Price Prediction)
+    - Allowed File Formats: CSV, JSON (only for Wheat Seed Type Prediction, under Batch (JSON) option)
+    - Results will be printed as a table in a separate page that user will be redirected to
+
 ## Folder Structure
 ```
 IT3385_grp_assignment/
